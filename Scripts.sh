@@ -3,10 +3,10 @@ until [[ -f /var/lib/cloud/instance/boot-finished ]]; do
   sleep 1
 done
 # install nginx
-sudo yum update -y
-sudo yum install nginx -y
+yum update -y
+yum install nginx -y
 # make sure nginx is started
-sudo service nginx start
+service nginx start
 
 systemctl start firewalld
 
