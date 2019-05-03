@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "teraform_gateway" {
   vpc_id = "${aws_vpc.default.id}"
 }
 
-resource "aws_route_table" "terraform-route_table" {
+resource "aws_route_table" "terraform_route_table" {
   vpc_id = "${aws_vpc.default.id}"
   route {
     cidr_block  = "0.0.0.0/0"
@@ -31,7 +31,7 @@ resource "aws_route_table" "terraform-route_table" {
 
 resource "aws_route_table_association" "terraform_association" {
   subnet_id      = "${aws_subnet.terraform_subnet.id}"
-  route_table_id = "${aws_route_table.teraform_gateway.id}"
+  route_table_id = "${aws_route_table.terraform_route_table.id}"
 }
 
 resource "aws_security_group" "terraform_scgroup" {
