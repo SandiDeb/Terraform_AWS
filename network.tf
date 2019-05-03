@@ -1,6 +1,6 @@
 resource "aws_vpc" "default" {
   cidr_block          = "10.0.0.0/16"
-  enable_dns_hostname = true
+  enable_dns_hostnames = true
 
   tags {
     name = "default"
@@ -35,20 +35,20 @@ resource "aws_route_table_association" "terraform_association" {
 }
 
 resource "aws_security_group" "terraform_scgroup" {
-  name   = "Terraform_Security_Group"
+  name   = "ec2-scg"
   vpc_id = "${aws_vpc.default.id}"
 
   ingress {
     from_port  = 22
     to_port    = 22
     protocol   = "tcp"
-    cidr_block = "203.191.35.0/24"
+    cidr_blocks = ["203.191.35.0/24"]
   }
 
   egress {
     from_port  = 0
     to_port    = 0
     protocol   = "-1"
-    cidr_block = "0.0.0.0/0"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
